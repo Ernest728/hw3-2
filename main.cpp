@@ -9,7 +9,6 @@ static DigitalOut led2(LED2); // led2 = PB_14
 Thread thread1;
 Thread thread2;
 
-static BufferedSerial device2(D1, D0);  // tx, rx   D1:tx   D0:rx
 static BufferedSerial serial_port(USBTX, USBRX);
 
 I2C i2c_lcd(D14, D15); // SDA, SCL
@@ -55,11 +54,6 @@ void slave_thread() {
 
 int main() {
   // Set desired properties (9600-8-N-1).
-  device2.set_baud(9600);
-  device2.set_format(
-      /* bits */ 8,
-      /* parity */ BufferedSerial::None,
-      /* stop bit */ 1);
 
   //thread1.start(master_thread);
   thread2.start(slave_thread);
